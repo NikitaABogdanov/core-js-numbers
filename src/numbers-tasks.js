@@ -107,8 +107,11 @@ function getLinearEquationRoot(a, b) {
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  const aMultipliedB = x1 * x2 + y1 * y2;
+  const magnitudeA = Math.sqrt(x1 ** 2 + y1 ** 2);
+  const magnitudeB = Math.sqrt(x2 ** 2 + y2 ** 2);
+  return Math.acos(aMultipliedB / (magnitudeA * magnitudeB));
 }
 
 /**
@@ -177,8 +180,10 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  const divider = +`1e${pow}`;
+  const result = Math.round(num / divider) * divider;
+  return result;
 }
 
 /**
@@ -198,8 +203,13 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  for (let i = 2; i < n; i += 1) {
+    if (n % i === 0 && n !== i) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -217,8 +227,8 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  return +value || def;
 }
 
 /**
@@ -249,8 +259,22 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  let a = 0;
+  let b = 1;
+  let c;
+  if (index === 0) {
+    c = a;
+  } else if (index === 1) {
+    c = b;
+  } else {
+    for (let i = 2; i <= index; i += 1) {
+      c = a + b;
+      a = b;
+      b = c;
+    }
+  }
+  return c;
 }
 
 /**
@@ -302,8 +326,15 @@ function getSumOfDigits(num) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  let x = 4;
+  for (let i = 2; x <= num; i *= 1) {
+    if (x === num) {
+      return true;
+    }
+    x *= i;
+  }
+  return false;
 }
 
 /**
@@ -591,8 +622,8 @@ function getRandomInteger(min, max) {
  * @example:
  * 3, 4 => 5
  */
-function getHypotenuse(/* a, b */) {
-  throw new Error('Not implemented');
+function getHypotenuse(a, b) {
+  return Math.hypot(a, b);
 }
 
 /**
